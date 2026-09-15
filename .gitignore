@@ -1,0 +1,30 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build/
+
+# Ignore Kotlin plugin data
+.kotlin
+
+#Ignore Gradle target directory
+target/
+
+# IDE files
+.idea/
+*.iml
+
+#Logs and Reports
+*.log
+log/
+reports/
+screenshots/
+test-output/
+allure-results/
+allure-report/
+
+# OS files
+.DS_Store
+
+# Temporary files
+*.tmp
