@@ -51,11 +51,11 @@ public final class ConfigManager {
         return PROPERTIES.getProperty(key, def);
     }
 
-    public int getInt(String key){
+    public static int getInt(String key){
         return Integer.parseInt(get(key));
     }
 
-    public boolean getBoolean(String key){
+    public static boolean getBoolean(String key){
         return Boolean.parseBoolean(get(key));
     }
 }
