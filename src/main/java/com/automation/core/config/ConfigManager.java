@@ -9,6 +9,7 @@ import java.util.Properties;
 public final class ConfigManager {
 
     private static final String DEFAULT_ENVIRONMENT = "qa";
+
     private static final Properties PROPERTIES = new Properties();
 
     static {
