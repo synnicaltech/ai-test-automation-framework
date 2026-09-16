@@ -10,3 +10,18 @@ java {
         languageVersion = JavaLanguageVersion.of(17)
     }
 }
+
+repositories{
+    mavenCentral()
+}
+
+dependencies{
+    implementation "org.seleniumhq.selenium:selenium-java:${selenium}"
+    implementation "org.junit.jupiter:junit-jupiter-api:${junit}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitEngine}"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:${junitLauncher}"
+}
+
+test {
+    useJUnitPlatform()
+}
