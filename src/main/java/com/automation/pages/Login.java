@@ -3,16 +3,14 @@ package com.automation.pages;
 import com.automation.core.config.ConfigManager;
 import org.openqa.selenium.WebDriver;
 
-public class Login {
+public class Login extends BasePage{
 
-    private WebDriver webDriver;
-
-    public Login(WebDriver webDriver){
-        this.webDriver = webDriver;
+    public Login(WebDriver driver) {
+        super(driver);
     }
 
     public Login open(){
-        webDriver.get(ConfigManager.get("base.url"));
+        driver.get(ConfigManager.get("base.url"));
         return this;
     }
 
@@ -22,6 +20,6 @@ public class Login {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return webDriver.getCurrentUrl();
+        return driver.getCurrentUrl();
     }
 }
