@@ -1,20 +1,18 @@
 package com.automation.pages;
 
+import com.automation.core.config.ConfigManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.bidi.log.Log;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Login {
 
     private WebDriver webDriver;
 
-    public Login(){
-        webDriver = new ChromeDriver();
+    public Login(WebDriver webDriver){
+        this.webDriver = webDriver;
     }
 
     public Login open(){
-        webDriver.manage().window().maximize();
-        webDriver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        webDriver.get(ConfigManager.get("base.url"));
         return this;
     }
 
@@ -25,9 +23,5 @@ public class Login {
             throw new RuntimeException(e);
         }
         return webDriver.getCurrentUrl();
-    }
-
-    public void closeDriver(){
-        webDriver.quit();
     }
 }
