@@ -13,6 +13,11 @@ public abstract class BasePage {
     }
 
     protected WebElement find(By locator) {
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         return driver.findElement(locator);
     }
 
