@@ -10,8 +10,9 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void openUrlTest(){
-        Login login = new Login(DriverManager.getDriver()).open();
-        Assertions.assertTrue(login.getCurrentUrl().trim().contains("/auth/login"));
+        Login login = new Login(DriverManager.getDriver());
+        login.open().login("Admin", "admin123");
+        Assertions.assertTrue(DriverManager.getDriver().getCurrentUrl().trim().contains("/dashboard"));
     }
 
 }
