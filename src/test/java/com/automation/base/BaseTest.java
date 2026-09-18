@@ -8,11 +8,13 @@ public abstract class BaseTest {
 
     @BeforeEach
     public void setUp(){
+        System.out.println("Starting test...");
         DriverManager.initDriver();
     }
 
     @AfterEach
     public void tearDown(){
+        System.out.println("Cleaning up test...");
         DriverManager.quitDriver();
     }
 }
