@@ -1,4 +1,10 @@
 package com.automation.pages;
 
-public class DashboardPage {
+import org.openqa.selenium.WebDriver;
+
+public class DashboardPage extends BasePage {
+
+    public DashboardPage(WebDriver driver){
+        super(driver);
+    }
 }

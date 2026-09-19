@@ -12,6 +12,8 @@ public class LoginPage extends BasePage{
 
     private final By loginButton = By.xpath("//button[contains(@class,'orangehrm-login-button') and @type='submit']");
 
+    private final By errorMessage = By.xpath("//div[@class='orangehrm-login-error']//p");
+
     public LoginPage(WebDriver driver) {
         super(driver);
     }
@@ -31,14 +33,22 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-    public void clickLogin(){
+    public DashboardPage clickLogin(){
         click(loginButton);
+        return new DashboardPage(driver);
     }
 
-    public void login(String usernameValue, String passwordValue){
+    public DashboardPage login(String usernameValue, String passwordValue) {
         enterUsername(usernameValue);
         enterPassword(passwordValue);
-        clickLogin();
+        return clickLogin();
     }
 
+    public String getErrorMessage(){
+        return getText(errorMessage);
+    }
+
+    public boolean isLoginPageDisplayed(){
+        return isDisplayed(usernameField);
+    }
 }
