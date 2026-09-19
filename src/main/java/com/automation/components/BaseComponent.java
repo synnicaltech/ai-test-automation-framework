@@ -24,18 +24,8 @@ public abstract class BaseComponent {
         return driver.findElement(locator);
     }
 
-    protected void click(By locator) {
-        find(locator).click();
-    }
-
     protected void click(WebElement element){
         element.click();
-    }
-
-    protected void type(By locator, String text) {
-        WebElement element = find(locator);
-        element.clear();
-        element.sendKeys(text);
     }
 
     protected WebElement root(){
