@@ -8,11 +8,11 @@ public abstract class BaseComponent {
 
     protected final WebDriver driver;
 
-    protected final By rootLocator;
+    protected final By root;
 
-    protected BaseComponent(WebDriver driver, By rootLocator){
+    protected BaseComponent(WebDriver driver, By root){
         this.driver = driver;
-        this.rootLocator = rootLocator;
+        this.root = root;
     }
 
     protected WebElement find(By locator) {
@@ -28,7 +28,17 @@ public abstract class BaseComponent {
         find(locator).click();
     }
 
+    protected void click(WebElement element){
+        element.click();
+    }
+
+    protected void type(By locator, String text) {
+        WebElement element = find(locator);
+        element.clear();
+        element.sendKeys(text);
+    }
+
     protected WebElement root(){
-        return find(rootLocator);
+        return find(root);
     }
 }
