@@ -10,10 +10,11 @@ import org.junit.jupiter.api.Test;
 public class LoginTest extends BaseTest {
 
     @Test
-    public void openUrlTest(){
+    public void validLogin(){
         LoginPage login = new LoginPage(DriverManager.getDriver()).open();
         Assertions.assertTrue(login.isLoginPageDisplayed());
         DashboardPage dashboardPage = login.login("Admin", "admin123");
+        Assertions.assertTrue(dashboardPage.isDashboardPageDisplayed());
     }
 
 }
