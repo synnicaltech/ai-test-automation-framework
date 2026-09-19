@@ -1,4 +1,4 @@
 package com.automation.pages;
 
-public class Dashboard {
+public class DashboardPage {
 }
