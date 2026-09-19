@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public abstract class BasePage {
 
-    protected WebDriver driver;
+    protected final WebDriver driver;
 
     protected BasePage(WebDriver driver){
         this.driver = driver;
@@ -33,5 +33,17 @@ public abstract class BasePage {
 
     protected String getText(By locator) {
         return find(locator).getText();
+    }
+
+    protected boolean isDisplayed(By locator) {
+        return find(locator).isDisplayed();
+    }
+
+    protected String getTitle() {
+        return driver.getTitle();
+    }
+
+    protected String getCurrentUrl() {
+        return driver.getCurrentUrl();
     }
 }

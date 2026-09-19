@@ -4,7 +4,7 @@ import com.automation.core.config.ConfigManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Login extends BasePage{
+public class LoginPage extends BasePage{
 
     private final By usernameField = By.xpath("//input[@name='username']");
 
@@ -12,21 +12,21 @@ public class Login extends BasePage{
 
     private final By loginButton = By.xpath("//button[contains(@class,'orangehrm-login-button') and @type='submit']");
 
-    public Login(WebDriver driver) {
+    public LoginPage(WebDriver driver) {
         super(driver);
     }
 
-    public Login open(){
+    public LoginPage open(){
         driver.get(ConfigManager.get("base.url"));
         return this;
     }
 
-    public Login enterUsername(String usernameValue){
+    public LoginPage enterUsername(String usernameValue){
         type(usernameField, usernameValue);
         return this;
     }
 
-    public Login enterPassword(String passwordValue){
+    public LoginPage enterPassword(String passwordValue){
         type(passwordField, passwordValue);
         return this;
     }
