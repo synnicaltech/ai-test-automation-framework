@@ -22,7 +22,6 @@ public class Sidebar extends BaseComponent{
     }
 
     public void selectItem(String text){
-       WebElement item = root().findElement(By.xpath(manuItem.replace("%s", text)));
-       item.click();
+       root().findElement(By.xpath(manuItem.replace("%s", text))).click();
     }
 }

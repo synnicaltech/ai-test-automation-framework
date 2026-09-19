@@ -9,7 +9,7 @@ public class Header extends BaseComponent {
 
     private final By profileButton = By.xpath("//div[@class='oxd-topbar-header-userarea']//i");
 
-    private final By profileRoot = By.xpath("//div[@class='oxd-topbar-header-userarea']//ul[@class='oxd-dropdown-menu']");
+    private final By profileRoot = By.xpath("//div[@class='oxd-topbar-header-userarea']");
 
     private final Profile profile;
 
