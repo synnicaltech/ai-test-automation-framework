@@ -18,6 +18,7 @@ repositories{
 dependencies{
     implementation "org.seleniumhq.selenium:selenium-java:${selenium}"
     implementation "org.junit.jupiter:junit-jupiter-api:${junit}"
+    implementation "tools.jackson.core:jackson-databind:${jacksonDatabind}"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitEngine}"
     testRuntimeOnly "org.junit.platform:junit-platform-launcher:${junitLauncher}"
 }
