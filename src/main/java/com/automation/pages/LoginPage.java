@@ -18,8 +18,8 @@ public class LoginPage extends BasePage{
         super(driver);
     }
 
-    public LoginPage open(){
-        driver.get(ConfigManager.get("base.url"));
+    public LoginPage open(String url){
+        driver.get(ConfigManager.get(url));
         return this;
     }
 

@@ -1,6 +1,7 @@
 package com.automation.login;
 
 import com.automation.base.BaseTest;
+import com.automation.core.config.ConfigManager;
 import com.automation.core.driver.DriverManager;
 import com.automation.pages.DashboardPage;
 import com.automation.pages.LoginPage;
@@ -11,7 +12,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void validLogin(){
-        LoginPage login = new LoginPage(DriverManager.getDriver()).open();
+        LoginPage login = new LoginPage(DriverManager.getDriver()).open(ConfigManager.get("base.url"));
         Assertions.assertTrue(login.isLoginPageDisplayed());
         DashboardPage dashboardPage = login.login("Admin", "admin123");
         Assertions.assertTrue(dashboardPage.isDashboardPageDisplayed());
