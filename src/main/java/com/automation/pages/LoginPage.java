@@ -19,7 +19,7 @@ public class LoginPage extends BasePage{
     }
 
     public LoginPage open(String url){
-        driver.get(ConfigManager.get(url));
+        driver.get(url);
         return this;
     }
 

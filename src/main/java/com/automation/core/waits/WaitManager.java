@@ -1,6 +1,7 @@
 package com.automation.core.waits;
 
 import com.automation.core.config.ConfigManager;
+import com.automation.core.exception.FrameworkException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,7 +15,14 @@ public class WaitManager {
     private final WebDriverWait wait;
 
     public WaitManager(WebDriver driver){
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigManager.getInt("explicit.wait")));
+        if(driver == null){
+            throw new FrameworkException("WebDriver can not be null");
+        }
+        int timeout = ConfigManager.getInt("explicit.wait");
+        if(timeout <= 0){
+            throw new FrameworkException("Explicit wait timeout must be greater than 0");
+        }
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
     }
 
     public WebElement waitForPresence(By locator){
