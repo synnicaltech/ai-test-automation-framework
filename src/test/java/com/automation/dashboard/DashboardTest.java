@@ -16,7 +16,7 @@ public class DashboardTest extends BaseTest {
     public void searchPIM(){
         LoginTestData data = LoginTestDataProvider.validLogin();
         LoginPage loginPage = new LoginPage(DriverManager.getDriver()).open(ConfigManager.get("base.url"));
-        DashboardPage dashboardPage = loginPage.login(data.username(), data.username());
+        DashboardPage dashboardPage = loginPage.login(data.username(), data.password());
         Assertions.assertTrue(dashboardPage.isDashboardPageDisplayed());
         dashboardPage.sidebar().searchMenuItem("PIM").selectItem("PIM");
         dashboardPage.header().openProfile().logout();

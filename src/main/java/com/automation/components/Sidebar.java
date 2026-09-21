@@ -8,7 +8,7 @@ public class Sidebar extends BaseComponent{
 
     private final By searchField = By.xpath("//div[@class='oxd-main-menu-search']//input[@placeholder='Search']");
 
-    private final String manuItem = "//li[@class='oxd-main-menu-item-wrapper']//span[text()='%s']/parent::a";
+    private final String menuItem = "//li[@class='oxd-main-menu-item-wrapper']//span[text()='%s']/parent::a";
 
     public Sidebar(WebDriver driver, By root){
         super(driver, root);
@@ -22,6 +22,6 @@ public class Sidebar extends BaseComponent{
     }
 
     public void selectItem(String text){
-       root().findElement(By.xpath(manuItem.replace("%s", text))).click();
+       root().findElement(By.xpath(menuItem.replace("%s", text))).click();
     }
 }
