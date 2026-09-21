@@ -19,6 +19,9 @@ dependencies{
     implementation "org.seleniumhq.selenium:selenium-java:${selenium}"
     implementation "org.junit.jupiter:junit-jupiter-api:${junit}"
     implementation "tools.jackson.core:jackson-databind:${jacksonDatabind}"
+    implementation "org.slf4j:slf4j-api:${slf4jApi}"
+    implementation "org.apache.logging.log4j:log4j-slf4j2-impl:${log4jSlf4j2Impl}"
+    implementation "org.apache.logging.log4j:log4j-core:${log4jCore}"
     testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitEngine}"
     testRuntimeOnly "org.junit.platform:junit-platform-launcher:${junitLauncher}"
 }
