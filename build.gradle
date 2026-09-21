@@ -38,6 +38,11 @@ test {
         showStackTraces=true
     }
 
+    reports {
+        html.required = true
+        junitXml.required = true
+    }
+
     systemProperty "env", System.getProperty("env", "qa")
     systemProperty "browser", System.getProperty("browser", "chrome")
     systemProperty "headless", System.getProperty("headless","true")
