@@ -5,12 +5,16 @@ import com.automation.utils.DateUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class ScreenshotService {
+
+    private static final Logger log = LoggerFactory.getLogger(ScreenshotService.class);
 
     private final WebDriver driver;
 
@@ -22,16 +26,27 @@ public class ScreenshotService {
     }
 
     public Path capture(String name) {
+        if(name == null || name.isBlank()){
+            name = "screenshot";
+        }
         try {
             Path directory = Path.of("build", "screenshots");
             Files.createDirectories(directory);
-            String fileName = name + "_" + DateUtils.now() + ".png";
+            String safeName = sanitizeFileName(name);
+            String fileName = safeName + "_" + DateUtils.now() + ".png";
             Path destination = directory.resolve(fileName);
+            log.info("Capturing screenshot: {}", destination);
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
             Files.write(destination, screenshot);
+            log.info("Screenshot saved: {}", destination);
             return destination;
         } catch (IOException e) {
+            log.error("Failed to save screenshot", e);
             throw new FrameworkException("Failed to capture screenshot.", e);
         }
+    }
+
+    private String sanitizeFileName(String name) {
+        return name.replaceAll("[^a-zA-Z0-9._-]", "_");
     }
 }
