@@ -28,7 +28,7 @@ public class FailureScreenshotExtension implements AfterTestExecutionCallback {
                 return;
             }
             ScreenshotService screenshotService = new ScreenshotService(DriverManager.getDriver());
-            Path screenshot = screenshotService.capture(testName + "-failure");
+            Path screenshot = screenshotService.capture(testName + "failure");
             log.info("Failure screenshot captured: {}", screenshot);
         } catch (Exception e) {
             log.error("Failed to capture failure screenshot", e);

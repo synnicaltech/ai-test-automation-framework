@@ -27,4 +27,15 @@ public class LoginTest extends BaseTest {
         log.info("Test passed: validLogin");
     }
 
+    @Test
+    public void invalidLogin(){
+        log.info("Starting test: invalidLogin");
+        LoginTestData data = LoginTestDataProvider.invalidLogin();
+        LoginPage login = new LoginPage(DriverManager.getDriver()).open(ConfigManager.get("base.url"));
+        Assertions.assertTrue(login.isLoginPageDisplayed());
+        DashboardPage dashboardPage = login.login(data.username(), data.password());
+        Assertions.assertFalse(dashboardPage.isDashboardPageDisplayed());
+        log.info("Test passed: invalidLogin");
+    }
+
 }
