@@ -4,8 +4,12 @@ import com.automation.core.config.BrowserConfig;
 import com.automation.core.config.ConfigManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ConfigurationTest {
+
+    private static final Logger log = LoggerFactory.getLogger(ConfigurationTest.class);
 
     @Test
     public void shouldLoadConfiguration(){
@@ -14,10 +18,10 @@ public class ConfigurationTest {
         boolean headless = ConfigManager.getBoolean("headless");
         int explicitWait = ConfigManager.getInt("explicit.wait");
 
-        System.out.println("Base Url : "+baseUrl);
-        System.out.println("Browser : "+browser);
-        System.out.println("Headless : "+headless);
-        System.out.println("Explicit Wait : "+explicitWait);
+        log.info("Base Url : {}",baseUrl);
+        log.info("Browser : {}",browser);
+        log.info("Headless : {}",headless);
+        log.info("Explicit Wait : {}",explicitWait);
 
         Assertions.assertNotNull(baseUrl);
         Assertions.assertNotNull(browser);
@@ -27,6 +31,6 @@ public class ConfigurationTest {
     @Test
     public void shouldResolveBrowser(){
         Assertions.assertNotNull(BrowserConfig.getBrowser());
-        System.out.println("Resolved Browser : "+BrowserConfig.getBrowser());
+        log.info("Resolved Browser : {}",BrowserConfig.getBrowser());
     }
 }
