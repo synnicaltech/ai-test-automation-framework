@@ -1,5 +1,7 @@
 package com.automation.base;
 
+import com.automation.core.config.BrowserConfig;
+import com.automation.core.context.TestContext;
 import com.automation.core.driver.DriverManager;
 import com.automation.core.extension.FailureScreenshotExtension;
 import org.junit.jupiter.api.AfterEach;
@@ -14,8 +16,20 @@ public abstract class BaseTest {
     private static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @BeforeEach
-    public void setUp(){
+    public void setUp(org.junit.jupiter.api.TestInfo testInfo){
         log.info("========== Test Setup Started ==========");
+        String testName = testInfo.getDisplayName();
+        TestContext.setTestName(testName);
+        TestContext.setBrowser(BrowserConfig.getBrowser().name());
+        String environment = System.getProperty("env", "qa");
+        TestContext.setEnvironment(environment);
+
+        log.info("Starting test: {} | thread={} | browser={} | environment={}",
+                testName,
+                Thread.currentThread().getName(),
+                TestContext.getBrowser(),
+                TestContext.getEnvironment()
+        );
         DriverManager.initDriver();
         log.info("========== Test Setup Completed ==========");
     }
