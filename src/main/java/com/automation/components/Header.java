@@ -23,7 +23,7 @@ public class Header extends BaseComponent {
     }
 
     public Profile openProfile(){
-        click(root().findElement(profileButton));
+        root().findElement(profileButton).click();
         return profile;
     }
 

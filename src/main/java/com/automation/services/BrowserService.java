@@ -2,13 +2,17 @@ package com.automation.services;
 
 import com.automation.core.exception.FrameworkException;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class BrowserService {
+    private static final Logger log = LoggerFactory.getLogger(BrowserService.class);
 
     private final WebDriver driver;
 
     public BrowserService(WebDriver driver) {
         if (driver == null) {
+            log.error("WebDriver cannot be null.");
             throw new FrameworkException("WebDriver cannot be null.");
         }
         this.driver = driver;
@@ -38,7 +42,5 @@ public class BrowserService {
         return driver.getCurrentUrl();
     }
 
-    public String getTitle() {
-        return driver.getTitle();
-    }
+    public String getTitle() { return driver.getTitle(); }
 }

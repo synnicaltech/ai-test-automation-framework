@@ -7,15 +7,15 @@ import org.openqa.selenium.WebDriver;
 
 public class DashboardPage extends BasePage {
 
-    private final Header header;
-
-    private final Sidebar sidebar;
-
     private final By dashboardTitle = By.xpath("//div[@class='oxd-topbar-header-title']//h6");
 
     private final By headerRoot = By.xpath("//div[@class='oxd-topbar-header']");
 
     private final By sidebarRoot = By.xpath("//nav[@class='oxd-navbar-nav']//div[@class='oxd-sidepanel-body']");
+
+    private final Header header;
+
+    private final Sidebar sidebar;
 
     public DashboardPage(WebDriver driver){
         super(driver);

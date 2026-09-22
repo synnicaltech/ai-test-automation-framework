@@ -16,10 +16,9 @@ public class FailureScreenshotExtension implements AfterTestExecutionCallback {
 
     @Override
     public void afterTestExecution(ExtensionContext context) throws Exception {
-        if(!isTestFailed(context)){
+        if(context.getExecutionException().isEmpty()){
             return;
         }
-
         String testName = TestContext.getTestName();
         if(testName == null){
             testName = context.getDisplayName();
@@ -37,10 +36,6 @@ public class FailureScreenshotExtension implements AfterTestExecutionCallback {
         } catch (Exception e) {
             log.error("Failed to capture failure screenshot", e);
         }
-    }
-
-    private boolean isTestFailed(ExtensionContext context){
-        return context.getExecutionException().isPresent();
     }
 
     private boolean hasDriver(){
