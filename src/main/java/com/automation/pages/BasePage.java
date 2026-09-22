@@ -19,7 +19,7 @@ public abstract class BasePage {
 
     protected BasePage(WebDriver driver){
         this.driver = driver;
-        this.wait = new WaitManager(driver);
+        this.wait = WaitManager.getInstance();
         this.browserService = new BrowserService(driver);
         this.javaScriptService = new JavaScriptService(driver);
     }

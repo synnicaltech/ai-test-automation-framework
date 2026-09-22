@@ -4,6 +4,7 @@ import com.automation.core.config.BrowserConfig;
 import com.automation.core.context.TestContext;
 import com.automation.core.driver.DriverManager;
 import com.automation.core.extension.FailureScreenshotExtension;
+import com.automation.core.waits.WaitManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -31,12 +32,14 @@ public abstract class BaseTest {
                 TestContext.getEnvironment()
         );
         DriverManager.initDriver();
+        WaitManager.init(DriverManager.getDriver());
         log.info("========== Test Setup Completed ==========");
     }
 
     @AfterEach
     public void tearDown(){
         log.info("========== Test Teardown Started ==========");
+        WaitManager.cleanup();
         DriverManager.quitDriver();
         log.info("========== Test Teardown Completed ==========");
     }
