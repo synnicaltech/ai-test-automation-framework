@@ -16,7 +16,7 @@ public abstract class BaseComponent {
     protected BaseComponent(WebDriver driver, By root){
         this.driver = driver;
         this.root = root;
-        this.wait = new WaitManager(driver);
+        this.wait = WaitManager.getInstance();
     }
 
     protected WebElement root(){

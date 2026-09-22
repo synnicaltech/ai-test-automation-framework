@@ -12,13 +12,15 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
-public class WaitManager {
+public final class WaitManager {
 
     private static final Logger log = LoggerFactory.getLogger(WaitManager.class);
 
+    private static final ThreadLocal<WaitManager> INSTANCE = new ThreadLocal<>();
+
     private final WebDriverWait wait;
 
-    public WaitManager(WebDriver driver){
+    private WaitManager(WebDriver driver){
         if(driver == null){
             log.error("WebDriver cannot be null.");
             throw new FrameworkException("WebDriver can not be null");
@@ -29,6 +31,19 @@ public class WaitManager {
             throw new FrameworkException("Explicit wait timeout must be greater than 0");
         }
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+    }
+
+    public static void init(WebDriver driver){
+        INSTANCE.set(new WaitManager(driver));
+    }
+
+    public static WaitManager getInstance(){
+        WaitManager manager = INSTANCE.get();
+        if(manager == null){
+            log.error("WaitManager is not initialized for current thread.");
+            throw new FrameworkException("WaitManager is not initialized for current thread.");
+        }
+        return manager;
     }
 
     public WebElement waitForPresence(By locator){
@@ -57,5 +72,9 @@ public class WaitManager {
 
     public boolean waitForTitleContains(String value) {
         return wait.until(ExpectedConditions.titleContains(value));
+    }
+
+    public static void cleanup(){
+        INSTANCE.remove();
     }
 }
