@@ -19,15 +19,7 @@ public abstract class BaseComponent {
         this.wait = new WaitManager(driver);
     }
 
-    protected WebElement find(By locator) {
-       return wait.waitForVisibility(locator);
-    }
-
-    protected void click(WebElement element){
-        element.click();
-    }
-
     protected WebElement root(){
-        return find(root);
+        return wait.waitForVisibility(root);
     }
 }

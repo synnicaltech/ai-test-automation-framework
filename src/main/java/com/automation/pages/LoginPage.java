@@ -26,6 +26,7 @@ public class LoginPage extends BasePage{
         log.info("Opening login page: {}", url);
         try {
             driver.get(url);
+            wait.waitForUrlContains("/login");
             log.info("Login page opened successfully");
             return this;
         } catch (Exception e) {
@@ -46,19 +47,20 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-    public DashboardPage clickLogin(){
+    public void clickLogin(){
         log.info("Clicking login button");
         click(loginButton);
         log.info("Login button clicked");
-        return new DashboardPage(driver);
     }
 
     public DashboardPage login(String usernameValue, String passwordValue) {
         log.info("Starting login operation");
         enterUsername(usernameValue);
         enterPassword(passwordValue);
+        clickLogin();
+        wait.waitForUrlContains("/dashboard");
         log.info("Login operation completed");
-        return clickLogin();
+        return new DashboardPage(driver);
     }
 
     public String getErrorMessage(){

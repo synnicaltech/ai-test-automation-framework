@@ -40,6 +40,9 @@ public final class DriverFactory {
             options.addArguments("--headless=new");
         }
         options.addArguments("--start-maximized");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-gpu");
         try {
             return new ChromeDriver(options);
         }catch (Exception e){
@@ -74,7 +77,7 @@ public final class DriverFactory {
         try {
             return new EdgeDriver(options);
         } catch (Exception e) {
-            log.error("Failed to create EdgeDriver");
+            log.error("Failed to create EdgeDriver", e);
             throw e;
         }
     }

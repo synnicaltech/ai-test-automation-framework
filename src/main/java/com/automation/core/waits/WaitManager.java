@@ -7,19 +7,25 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 
 public class WaitManager {
 
+    private static final Logger log = LoggerFactory.getLogger(WaitManager.class);
+
     private final WebDriverWait wait;
 
     public WaitManager(WebDriver driver){
         if(driver == null){
+            log.error("WebDriver cannot be null.");
             throw new FrameworkException("WebDriver can not be null");
         }
         int timeout = ConfigManager.getInt("explicit.wait");
         if(timeout <= 0){
+            log.error("Explicit wait timeout must be greater than 0.");
             throw new FrameworkException("Explicit wait timeout must be greater than 0");
         }
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
