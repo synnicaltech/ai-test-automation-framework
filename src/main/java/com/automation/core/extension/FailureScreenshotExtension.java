@@ -1,5 +1,6 @@
 package com.automation.core.extension;
 
+import com.automation.core.context.TestContext;
 import com.automation.core.driver.DriverManager;
 import com.automation.services.ScreenshotService;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
@@ -19,7 +20,10 @@ public class FailureScreenshotExtension implements AfterTestExecutionCallback {
             return;
         }
 
-        String testName = context.getDisplayName();
+        String testName = TestContext.getTestName();
+        if(testName == null){
+            testName = context.getDisplayName();
+        }
         log.error("Test Failed. Capturing screenshot: {}", testName);
 
         try{
@@ -28,7 +32,7 @@ public class FailureScreenshotExtension implements AfterTestExecutionCallback {
                 return;
             }
             ScreenshotService screenshotService = new ScreenshotService(DriverManager.getDriver());
-            Path screenshot = screenshotService.capture(testName + "failure");
+            Path screenshot = screenshotService.capture(testName ,"failure");
             log.info("Failure screenshot captured: {}", screenshot);
         } catch (Exception e) {
             log.error("Failed to capture failure screenshot", e);

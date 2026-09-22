@@ -25,15 +25,15 @@ public class ScreenshotService {
         this.driver = driver;
     }
 
-    public Path capture(String name) {
+    public Path capture(String name, String reason) {
         if(name == null || name.isBlank()){
             name = "screenshot";
         }
         try {
-            Path directory = Path.of("build", "screenshots");
+            String threadName = Thread.currentThread().getName();
+            Path directory = Path.of("build", "screenshots", sanitizeFileName(threadName));
             Files.createDirectories(directory);
-            String safeName = sanitizeFileName(name);
-            String fileName = safeName + "_" + DateUtils.now() + ".png";
+            String fileName = sanitizeFileName(name) + "_"+sanitizeFileName(reason)+"_"+ DateUtils.now() + ".png";
             Path destination = directory.resolve(fileName);
             log.info("Capturing screenshot: {}", destination);
             byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
