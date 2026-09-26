@@ -14,14 +14,14 @@ public class ConfigurationTest {
     @Test
     public void shouldLoadConfiguration(){
         String baseUrl = ConfigManager.get("base.url");
-        String gridUrl = ConfigManager.get("grid.url");
+        String gridUrl = ConfigManager.get("remote.url");
         String browser = ConfigManager.get("browser");
         String executionType = ConfigManager.get("execution.type");
         boolean headless = ConfigManager.getBoolean("headless");
         int explicitWait = ConfigManager.getInt("explicit.wait");
 
         log.info("Base Url : {}",baseUrl);
-        log.info("Grid Url: {}", gridUrl);
+        log.info("Remote Url: {}", gridUrl);
         log.info("Browser : {}",browser);
         log.info("Headless : {}",headless);
         log.info("Execution Type: {}", executionType);

@@ -16,7 +16,7 @@ public final class ExecutionConfig {
         }
     }
 
-    public static String getGridURL(){
-        return ConfigManager.get("grid.url", "http://localhost:4444");
+    public static String getRemoteURL(){
+        return ConfigManager.get("remote.url", "http://localhost:4444");
     }
 }
