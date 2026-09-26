@@ -22,7 +22,8 @@ public final class ConfigManager {
 
     private static void loadConfigurations(){
         String environment = System.getProperty("env", DEFAULT_ENVIRONMENT);
-        String fileName = "config/config-"+environment.toLowerCase()+".properties";
+        String executionType = System.getProperty("execution.type", "local");
+        String fileName = "config/"+environment.toLowerCase()+"/config-"+executionType.toLowerCase()+".properties";
 
         log.info("Loading configuration for environment: {}", environment);
         try(InputStream inputStream = ConfigManager.class.getClassLoader().getResourceAsStream(fileName)){

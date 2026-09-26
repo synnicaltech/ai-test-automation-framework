@@ -27,7 +27,7 @@ public class RemoteWebDriverStrategy implements DriverStrategy{
         capabilities.setCapability("browserName", browser);
         capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         try {
-            return new RemoteWebDriver(URI.create(ExecutionConfig.getGridURL()).toURL(), capabilities);
+            return new RemoteWebDriver(URI.create(ExecutionConfig.getRemoteURL()).toURL(), capabilities);
         } catch (MalformedURLException e) {
             log.error("Invalid Selenium Grid URL", e);
             throw new FrameworkException("Invalid Selenium Grid URL", e);
