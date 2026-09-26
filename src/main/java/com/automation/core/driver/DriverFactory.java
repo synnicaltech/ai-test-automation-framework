@@ -14,7 +14,7 @@ public final class DriverFactory {
     private DriverFactory(){}
 
     public static WebDriver createDriver(){
-        DriverStrategy strategy = DriverStrategyFactory.getStrategy();
+        DriverStrategy strategy = DriverStrategyFactory.getDriverStrategy();
         WebDriver driver = strategy.createDriver();
         configureTimeouts(driver);
         return driver;
