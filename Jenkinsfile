@@ -24,6 +24,9 @@ pipeline {
         stage('Build & Test') {
             steps {
                 sh '''
+                    java -version
+                    javac -version
+                    ./gradlew -version
                     chmod +x gradlew
                     ./gradlew clean test \
                     -Dheadless=false \
