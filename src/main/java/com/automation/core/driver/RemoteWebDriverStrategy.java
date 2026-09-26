@@ -5,6 +5,7 @@ import com.automation.core.config.ExecutionConfig;
 import com.automation.core.exception.FrameworkException;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +22,10 @@ public class RemoteWebDriverStrategy implements DriverStrategy{
         String browser = BrowserConfig.getBrowser().name().toLowerCase();
         log.info("Creating Remote WebDriver for browser: {}", browser);
         MutableCapabilities capabilities = new MutableCapabilities();
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.addArguments("--start-maximized");
         capabilities.setCapability("browserName", browser);
+        capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
         try {
             return new RemoteWebDriver(URI.create(ExecutionConfig.getGridURL()).toURL(), capabilities);
         } catch (MalformedURLException e) {
