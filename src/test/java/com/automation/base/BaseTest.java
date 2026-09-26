@@ -7,6 +7,7 @@ import com.automation.core.extension.FailureScreenshotExtension;
 import com.automation.core.waits.WaitManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ public abstract class BaseTest {
     private static final Logger log = LoggerFactory.getLogger(BaseTest.class);
 
     @BeforeEach
-    public void setUp(org.junit.jupiter.api.TestInfo testInfo){
+    public void setUp(TestInfo testInfo){
         log.info("========== Test Setup Started ==========");
         String testName = testInfo.getDisplayName();
         TestContext.setTestName(testName);
