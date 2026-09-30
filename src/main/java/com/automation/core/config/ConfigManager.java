@@ -45,6 +45,11 @@ public final class ConfigManager {
             log.debug("Using system property for key: {}", key);
             return systemProperty;
         }
+        String environmentVariable = System.getenv(key);
+        if (environmentVariable != null && !environmentVariable.isBlank()) {
+            log.debug("Using environment variable for key: {}", key);
+            return environmentVariable;
+        }
         String value = PROPERTIES.getProperty(key);
         if(value == null){
             log.error("Configuration key not found: {}", key);
