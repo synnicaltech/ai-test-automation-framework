@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+        ORANGEHRM_CREDS = credentials('orangehrm-credentials')
+    }
+
     stages {
         stage('Checkout') {
             steps {
