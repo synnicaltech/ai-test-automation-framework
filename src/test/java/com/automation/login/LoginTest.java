@@ -19,10 +19,11 @@ public class LoginTest extends BaseTest {
     @Test
     public void validLogin(){
         log.info("Starting test: validLogin");
-        LoginTestData data = LoginTestDataProvider.validLogin();
+        String username = ConfigManager.get("ORANGEHRM_CREDS_USR");
+        String password = ConfigManager.get("ORANGEHRM_CREDS_PSW");
         LoginPage login = new LoginPage(DriverManager.getDriver()).open(ConfigManager.get("base.url"));
         Assertions.assertTrue(login.isLoginPageDisplayed());
-        DashboardPage dashboardPage = login.login(data.username(), data.password());
+        DashboardPage dashboardPage = login.login(username, password);
         Assertions.assertTrue(dashboardPage.isDashboardPageDisplayed());
         log.info("Test passed: validLogin");
     }
