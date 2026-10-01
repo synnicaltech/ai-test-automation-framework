@@ -1,6 +1,6 @@
-package com.automation.login;
+package com.automation.ui.login;
 
-import com.automation.base.BaseTest;
+import com.automation.ui.base.BaseTest;
 import com.automation.core.config.ConfigManager;
 import com.automation.core.driver.DriverManager;
 import com.automation.pages.DashboardPage;
