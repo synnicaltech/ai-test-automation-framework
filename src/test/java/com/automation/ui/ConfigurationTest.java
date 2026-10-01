@@ -1,4 +1,4 @@
-package com.automation;
+package com.automation.ui;
 
 import com.automation.core.config.BrowserConfig;
 import com.automation.core.config.ConfigManager;

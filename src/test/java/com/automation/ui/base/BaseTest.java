@@ -1,4 +1,4 @@
-package com.automation.base;
+package com.automation.ui.base;
 
 import com.automation.core.config.BrowserConfig;
 import com.automation.core.context.TestContext;
