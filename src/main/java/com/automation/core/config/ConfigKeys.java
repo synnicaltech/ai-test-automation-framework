@@ -7,7 +7,7 @@ public final class ConfigKeys {
     public static final String EXECUTION_TYPE = "execution.type";
 
     // UI
-    public static final String  BASE_URL = "base.url";
+    public static final String BASE_URL = "base.url";
     public static final String BROWSER = "browser";
     public static final String HEADLESS = "headless";
 

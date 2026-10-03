@@ -1,11 +1,14 @@
 package com.automation.core.config;
 
+import com.automation.core.exception.ConfigurationException;
 import com.automation.core.exception.FrameworkException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URI;
+import java.time.Duration;
 import java.util.Properties;
 
 public final class ConfigManager {
@@ -77,5 +80,35 @@ public final class ConfigManager {
 
     public static boolean getBoolean(String key){
         return Boolean.parseBoolean(get(key));
+    }
+
+    public static long getLong(String key, long defaultValue) {
+        String value = get(key);
+
+        if (value == null || value.isBlank()) {
+            return defaultValue;
+        }
+
+        try {
+            return Long.parseLong(value.trim());
+        } catch (NumberFormatException e) {
+            throw new ConfigurationException(
+                    "Invalid numeric configuration for key '" +
+                            key + "': " + value,
+                    e
+            );
+        }
+    }
+
+    public static ApiConfig getApiConfig() {
+        return new ApiConfig(
+                URI.create(ConfigKeys.API_BASE_URL),
+                get(ConfigKeys.API_BASE_PATH, ""),
+                get(ConfigKeys.API_AUTH_TYPE, "none"),
+                get(ConfigKeys.API_AUTH_TOKEN_URL, ""),
+                Duration.ofSeconds(getLong(ConfigKeys.API_CONNECTION_TIMEOUT, 10L)),
+                Duration.ofSeconds(getLong(ConfigKeys.API_RESPONSE_TIMEOUT, 30L)),
+                Duration.ofSeconds(getLong(ConfigKeys.API_REQUEST_TIMEOUT, 30L))
+        );
     }
 }
