@@ -1,6 +1,6 @@
 package com.automation.core.config;
 
-import com.automation.core.exception.ConfigurationException;
+import com.automation.api.exception.ConfigurationException;
 import com.automation.core.exception.FrameworkException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
