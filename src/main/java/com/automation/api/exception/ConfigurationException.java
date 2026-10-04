@@ -1,4 +1,4 @@
-package com.automation.core.exception;
+package com.automation.api.exception;
 
 public class ConfigurationException extends RuntimeException{
 
